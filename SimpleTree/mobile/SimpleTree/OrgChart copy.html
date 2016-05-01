@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Collapsible Tree </title>
+
+    <style>
+	
+		.node {
+			cursor: pointer;
+		}
+
+		.node circle {
+		  fill: #fff;
+		  stroke: steelblue;
+		  stroke-width: 4px;
+		}
+
+		.node text {
+		  font: 12px sans-serif;
+		}
+
+		.link {
+		  fill: none;
+		  stroke: #ccc;
+		  stroke-width: 3px;
+		}
+	
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="treedata.json"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	
+
+<script>
+ 
+
+// ************** Generate the tree diagram	 *****************
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+var margin = {top: 70, right: 20, bottom: 10, left: 20},
+	width = w - margin.right - margin.left,
+	height = h - margin.top - margin.bottom;
+	
+var i = 0,
+	duration = 750,
+	root;
+
+var tree = d3.layout.tree()
+	.size([width, height]);
+
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.x, d.y]; });
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.right + margin.left)
+	.attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	
+//New Code Begin	
+var imagePath = "../../SimpleTree/Images/";
+
+var image1 = imagePath+"img1.jpg";
+var image2 = imagePath+"img2.jpg";
+var image3 = imagePath+"img3.jpg";
+var image4 = imagePath+"img4.jpg";
+var image5 = imagePath+"img5.jpg";
+var image6 = imagePath+"img6.jpg";
+var image7 = imagePath+"img7.jpg";
+var image8 = imagePath+"img8.jpg";
+var image9 = imagePath+"img9.jpg";
+var image10 = imagePath+"img10.jpg";
+
+var defs = svg.append('svg:defs');
+
+defs.append("svg:pattern")
+	.attr("id", "pattern1")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image1)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+
+defs.append("svg:pattern")
+	.attr("id", "pattern2")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image2)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern3")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image3)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern4")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image4)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern5")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image5)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern6")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image6)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern7")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image7)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern8")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image8)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern9")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image9)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+	
+defs.append("svg:pattern")
+	.attr("id", "pattern10")
+	.attr("width", '100%')
+	.attr("height", '100%')
+	.attr("patternContentUnits", "objectBoundingBox")
+	.append("svg:image")
+	.attr("xlink:href", image10)
+	.attr("preserveAspectRatio", "xMidYMid slice")
+	.attr("width", 1)
+	.attr("height", 1);
+
+
+//New Code End
+
+  $(document).ready(function(){
+    $("#csv-file").change(handleFileSelect);
+    
+  });
+root = treeData[0];  
+root.x0 = height / 2;
+root.y0 = 0;
+  
+update(root);
+
+d3.select(self.frameElement).style("height", "500px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 110; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+	  .attr("class", "node")
+	  .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+	  .on("click", click);
+	  
+  nodeEnter.append("circle")
+	  .attr("r", 1e-6)
+ 	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+	  .attr("y", function(d) { return d.children || d._children ? -43 : 43; })
+	  .attr("dy", ".35em")
+	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	  .text(function(d) { return d.name; })
+	  .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });	   
+
+  nodeUpdate.select("circle")
+	  .attr("r", 32)
+// 	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff";}) 	  
+      .style("fill", function(d){var dImage = "url(#"+d.image+")"; return dImage;})
+      .style("stroke", function(d) { var dParent="no";if(d.doubleParent){dParent = "yes";};return d.doubleParent ? "red" : "";})
+  
+  nodeUpdate.select("text")
+	  .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
+	  .remove();
+
+  nodeExit.select("circle")
+	  .attr("r", 1e-6);
+
+  nodeExit.select("text")
+	  .style("fill-opacity", 1e-6);
+
+  var link = svg.selectAll("path.link")
+	  .data(links, function(d) {return d.target.id;});   
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+	  .attr("class", "link")
+	  .attr("d", function(d) {	    
+		var o = {x: source.x0, y: source.y0};		
+		return diagonal({source: o, target: o});
+	  });
+	  
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr("d", function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+	d._children = d.children;
+	d.children = null;
+  } else {
+	d.children = d._children;
+	d._children = null;
+  }
+  update(d);
+}
+
+</script>
+	
+  </body>
+</html>
